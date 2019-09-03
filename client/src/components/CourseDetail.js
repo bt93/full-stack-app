@@ -82,7 +82,7 @@ class CourseDetail extends Component {
                     <div className="bounds">
                             <div className="grid-100">
                             <span>
-                                <Link className="button" to={`/update/${this.state.id}`}>Update Course</Link>
+                                <Link className="button" to={`/courses/${this.state.id}/update`}>Update Course</Link>
                                 <button className="button" onClick={() => this.deleteCourse(this.state.id)}>Delete Course</button>
                             </span>
                             <Link className="button button-secondary" to="/">Return to List</Link>

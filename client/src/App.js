@@ -26,7 +26,7 @@ class App extends Component {
 
           <Switch>
             <Route exact path={"/"} component={Courses}/>
-            <Route path={"/course/:id"} component={CourseDetail} />
+            <Route path={"/courses/:id"} component={CourseDetail} />
           </Switch>
         </div>
       </Router>
