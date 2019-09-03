@@ -19,20 +19,19 @@ class CourseDetail extends Component {
             }));
     }
 
+    deleteCourse(id) {
+        if (window.confirm('Are you sure you want to delete this course?')) {
+            // TODO ADD DELETE REQUEST W/ AUTH
+            console.log('DELETED!');
+            this.props.history.push('/');
+        } 
+    }
+
     render() {
         let renderedData;
 
         if (!this.state.isLoading) {
             renderedData = (
-                <div>
-                <div className="actions--bar">
-                    <div className="bounds">
-                        <div className="grid-100"><span>
-                        <Link className="button" to={`/update/${this.state.data.id}`}>Update Course</Link>
-                        <Link className="button" to={`/delete/${this.state.data.id}`}>Delete Course</Link></span>
-                        <Link className="button button-secondary" to="/">Return to List</Link></div>
-                    </div>
-                </div>
                 <div className="bounds course--detail">
                     <div className="grid-66">
                         <div className="course--header">
@@ -73,13 +72,23 @@ class CourseDetail extends Component {
                         </div>
                     </div>
                 </div>
-            </div>
             )
         } else {
             renderedData = <h1>Loading..</h1>
         }
         return (
             <div>
+                <div className="actions--bar">
+                    <div className="bounds">
+                            <div className="grid-100">
+                            <span>
+                                <Link className="button" to={`/update/${this.state.id}`}>Update Course</Link>
+                                <button className="button" onClick={() => this.deleteCourse(this.state.id)}>Delete Course</button>
+                            </span>
+                            <Link className="button button-secondary" to="/">Return to List</Link>
+                        </div>
+                    </div>
+                </div>
                 {renderedData}
             </div>
         )
