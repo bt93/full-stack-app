@@ -27,7 +27,20 @@ class UserSignUp extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        console.log(this.state);
+        
+        const body = {
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            emailAddress: this.state.emailAddress,
+            password: this.state.password
+        }
+        
+        if (body.password === this.state.confirmPassword) {
+            // TODO Hook up compenent to fetch api
+            console.log('Passwords match')
+        } else {
+            alert('"Confirm Password" must match "Password"');
+        }
     }
 
     render() {
