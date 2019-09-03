@@ -9,6 +9,7 @@ import {
 // Component imports
 import Header from './components/Header';
 import Courses from './components/Courses';
+import CourseDetail from './components/CourseDetail';
 
 // Style imports
 import './styles/global.css';
@@ -24,7 +25,8 @@ class App extends Component {
           <hr />
 
           <Switch>
-            <Route path={"/"} component={Courses}/>
+            <Route exact path={"/"} component={Courses}/>
+            <Route path={"/course/:id"} component={CourseDetail} />
           </Switch>
         </div>
       </Router>
