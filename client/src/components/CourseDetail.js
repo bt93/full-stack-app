@@ -61,6 +61,8 @@ class CourseDetail extends Component {
                                         {this.state.data.materialsNeeded.split('*').map((mat, i) => {
                                             if (i !== 0) {
                                                 return <li key={i}>{mat}</li>
+                                            } else {
+                                                return null
                                             }
                                         })}
                                         </ul>

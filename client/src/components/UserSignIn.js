@@ -10,14 +10,14 @@ class UserSignIn extends Component {
                     <div>
                         <form>
                             <div>
-                            <input id="emailAddress" name="emailAddress" type="text" class="" placeholder="Email Address" value="" />
+                            <input id="emailAddress" name="emailAddress" type="text" className="" placeholder="Email Address" />
                             </div>
                             <div>
-                            <input id="password" name="password" type="password" class="" placeholder="Password" value="" />
+                            <input id="password" name="password" type="password" className="" placeholder="Password" />
                             </div>
-                            <div class="grid-100 pad-bottom">
-                                <button class="button" type="submit">Sign In</button>
-                                <Link class="button button-secondary" to="/">Cancel</Link>
+                            <div className="grid-100 pad-bottom">
+                                <button className="button" type="submit">Sign In</button>
+                                <Link className="button button-secondary" to="/">Cancel</Link>
                             </div>
                         </form>
                     </div>
