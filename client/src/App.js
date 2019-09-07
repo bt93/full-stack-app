@@ -11,6 +11,7 @@ import Courses from './components/Courses';
 import CourseDetail from './components/CourseDetail';
 import UserSignIn from './components/UserSignIn';
 import UserSignUp from './components/UserSignUp';
+import UserSignOut from './components/UserSignOut';
 import CreateCourse from './components/CreateCourse';
 import UpdateCourse from './components/UpdateCourse';
 
@@ -34,6 +35,7 @@ class App extends Component {
             <Route path="/courses/:id" component={CourseDetail} />
             <Route path="/signin" component={UserSignIn} />
             <Route path="/signup" component={UserSignUp} />
+            <Route path="/signout" component={UserSignOut} />
           </Switch>
         </div>
       </Router>
