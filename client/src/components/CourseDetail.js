@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import baseApiUrl from '../config';
 
 class CourseDetail extends Component {
     state = {
@@ -9,7 +10,7 @@ class CourseDetail extends Component {
     }
 
     componentDidMount() {
-        fetch(`http://localhost:5000/api/courses/${this.state.id}`)
+        fetch(`${baseApiUrl}/courses/${this.state.id}`)
             .then(res => res.json())
             .then(res => this.setState(prevState => {
                 return {
