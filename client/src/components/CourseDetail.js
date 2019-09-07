@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import baseApiUrl from '../config';
+import loading from '../img/loading.gif';
 
 class CourseDetail extends Component {
     state = {
@@ -77,7 +78,7 @@ class CourseDetail extends Component {
                 </div>
             )
         } else {
-            renderedData = <h1>Loading..</h1>
+            renderedData = <img src={loading} className="centered" alt="Loading" />
         }
         return (
             <div>

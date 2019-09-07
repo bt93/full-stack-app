@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import baseApiUrl from '../config';
+import loading from '../img/loading.gif';
 
 
 class Courses extends Component {
@@ -35,7 +36,7 @@ class Courses extends Component {
                 });
             }
         } else {
-            renderedData = <h1>Loading...</h1>
+            renderedData = <img src={loading} className="centered" alt="Loading" />
         }
 
         return (

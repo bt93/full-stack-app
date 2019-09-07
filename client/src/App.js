@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { 
   BrowserRouter as Router, 
   Route,
-  Redirect,
   Switch
 } from 'react-router-dom';
 
@@ -27,10 +26,10 @@ class App extends Component {
           <hr />
 
           <Switch>
-            <Route exact path={"/"} component={Courses} />
-            <Route path={"/courses/:id"} component={CourseDetail} />
-            <Route path={"/signin"} component={UserSignIn} />
-            <Route path={"/signup"} component={UserSignUp} />
+            <Route exact path="/" component={Courses} />
+            <Route path="/courses/:id" component={CourseDetail} />
+            <Route path="/signin" component={UserSignIn} />
+            <Route path="/signup" component={UserSignUp} />
           </Switch>
         </div>
       </Router>
