@@ -11,6 +11,7 @@ import Courses from './components/Courses';
 import CourseDetail from './components/CourseDetail';
 import UserSignIn from './components/UserSignIn';
 import UserSignUp from './components/UserSignUp';
+import CreateCourse from './components/CreateCourse';
 
 // Style imports
 import './styles/global.css';
@@ -27,6 +28,7 @@ class App extends Component {
 
           <Switch>
             <Route exact path="/" component={Courses} />
+            <Route path="/courses/create" component={CreateCourse} />
             <Route path="/courses/:id" component={CourseDetail} />
             <Route path="/signin" component={UserSignIn} />
             <Route path="/signup" component={UserSignUp} />

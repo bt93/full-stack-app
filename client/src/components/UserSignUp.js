@@ -9,7 +9,8 @@ class UserSignUp extends Component {
             lastName: '',
             emailAddress: '',
             password: '',
-            confirmPassword: ''
+            confirmPassword: '',
+            errors: []
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
