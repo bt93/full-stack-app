@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Data from './Data';
 
-const Context = React.createContext();
+const Context = React.createContext(); 
 
 export class Provider extends Component {
     constructor() {
@@ -12,25 +12,6 @@ export class Provider extends Component {
         }
     }
 
-    render() {
-        const { authenticatedUser } = this.state;
-
-        const value = {
-            authenticatedUser,
-            data: this.data,
-            actions: {
-                signIn: this.signIn,
-                signOut: this.signOut
-            }
-        };
-
-        return (
-            <Context.Provider value={value}>
-                {this.props.children}
-            </Context.Provider>
-        )
-    }
-    
     signIn = async (emailAddress, password) => {
         const user = await this.data.getUser(emailAddress, password);
 
@@ -50,6 +31,27 @@ export class Provider extends Component {
 
         // TODO DELETE COOKIE
     }
+
+    render() {
+        const { authenticatedUser } = this.state;
+
+        const value = {
+            authenticatedUser,
+            data: this.data,
+            actions: {
+                signIn: this.signIn,
+                signOut: this.signOut
+            }
+        };
+        
+        return (
+            <Context.Provider value={value}>
+                {this.props.children}
+            </Context.Provider>
+        )
+    }
+    
+    
 }
 
 export const Consumer = Context.Consumer;

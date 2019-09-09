@@ -21,24 +21,24 @@ import UpdateCourse from './components/UpdateCourse';
 import withContext from './Context';
 
 // Components with Context
+const HeaderWithContext = withContext(Header);
+const UserSignInWithContext = withContext(UserSignIn);
 const UserSignUpWithContext = withContext(UserSignUp);
 
 
 export default () => (
       <Router>
-        <div className="App">
-          <Header />
-          <hr />
+        <HeaderWithContext />
+        <hr />
 
-          <Switch>
-            <Route exact path="/" component={Courses} />
-            <Route path="/courses/create" component={CreateCourse} />
-            <Route path="/courses/:id/update" component={UpdateCourse} />
-            <Route path="/courses/:id" component={CourseDetail} />
-            <Route path="/signin" component={UserSignIn} />
-            <Route path="/signup" component={UserSignUpWithContext} />
-            <Route path="/signout" component={UserSignOut} />
-          </Switch>
-        </div>
+        <Switch>
+          <Route exact path="/" component={Courses} />
+          <Route path="/courses/create" component={CreateCourse} />
+          <Route path="/courses/:id/update" component={UpdateCourse} />
+          <Route path="/courses/:id" component={CourseDetail} />
+          <Route path="/signin" component={UserSignInWithContext} />
+          <Route path="/signup" component={UserSignUpWithContext} />
+          <Route path="/signout" component={UserSignOut} />
+        </Switch>
       </Router>
 );
