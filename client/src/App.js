@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { 
   BrowserRouter as Router, 
   Route,
   Switch
 } from 'react-router-dom';
-
 // Style imports
 import './styles/global.css';
 
@@ -25,10 +24,7 @@ import withContext from './Context';
 const UserSignUpWithContext = withContext(UserSignUp);
 
 
-class App extends Component {
-
-  render() {
-    return (
+export default () => (
       <Router>
         <div className="App">
           <Header />
@@ -45,8 +41,4 @@ class App extends Component {
           </Switch>
         </div>
       </Router>
-    );
-    }
-}
-
-export default App;
+);

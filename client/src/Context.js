@@ -13,13 +13,16 @@ export class Provider extends Component {
     }
 
     render() {
+        const { authenticatedUser } = this.state;
+
         const value = {
+            authenticatedUser,
             data: this.data,
             actions: {
                 signIn: this.signIn,
                 signOut: this.signOut
             }
-        }
+        };
 
         return (
             <Context.Provider value={value}>
@@ -27,16 +30,17 @@ export class Provider extends Component {
             </Context.Provider>
         )
     }
+    
+    signIn = async (emailAddress, password) => {
+        const user = await this.data.getUser(emailAddress, password);
 
-    signIn = async (username, password) => {
-        const user = await this.data.getUser(username, password);
         if (user !== null) {
             this.setState(() => {
                 return {
                     authenticatedUser: user
                 }
             });
-            // TODO SET COOKIE HERE
+            // TODO SET COOKIE
         }
         return user;
     }
@@ -44,7 +48,7 @@ export class Provider extends Component {
     signOut = () => {
         this.setState({ authenticatedUser: null });
 
-        // TODO DELETE COOKIE HERE
+        // TODO DELETE COOKIE
     }
 }
 

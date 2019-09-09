@@ -24,8 +24,8 @@ export default class Data {
         return fetch(url, options);
     }
 
-    async getUser(username, password) {
-        const response = await this.api('/users', 'GET', null, true, { username, password });
+    async getUser(emailAddress, password) {
+        const response = await this.api('/users', 'GET', null, true, { emailAddress, password });
         if (response.status === 200) {
             return response.json().then(data => data);
         } else if (response.status === 401) {
@@ -48,8 +48,8 @@ export default class Data {
         }
     }
 
-    async createCourse(username, password, course) {
-        const response = await this.api('/courses', 'POST', course, true, { username, password });
+    async createCourse(emailAddress, password, course) {
+        const response = await this.api('/courses', 'POST', course, true, { emailAddress, password });
 
         if (response.status === 201) {
             return [];
@@ -64,8 +64,8 @@ export default class Data {
         }
     }
 
-    // async editCourse(username, password, course) {
-    //     const response = await this.api('/courses', 'POST', course, true, { username, password });
+    // async editCourse(emailAddress, password, course) {
+    //     const response = await this.api('/courses', 'POST', course, true, { emailAddress, password });
 
     //     if (response.status === 201) {
     //         return [];
