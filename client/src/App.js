@@ -5,6 +5,9 @@ import {
   Switch
 } from 'react-router-dom';
 
+// Style imports
+import './styles/global.css';
+
 // Component imports
 import Header from './components/Header';
 import Courses from './components/Courses';
@@ -15,8 +18,11 @@ import UserSignOut from './components/UserSignOut';
 import CreateCourse from './components/CreateCourse';
 import UpdateCourse from './components/UpdateCourse';
 
-// Style imports
-import './styles/global.css';
+// Context import
+import withContext from './Context';
+
+// Components with Context
+const UserSignUpWithContext = withContext(UserSignUp);
 
 
 class App extends Component {
@@ -34,7 +40,7 @@ class App extends Component {
             <Route path="/courses/:id/update" component={UpdateCourse} />
             <Route path="/courses/:id" component={CourseDetail} />
             <Route path="/signin" component={UserSignIn} />
-            <Route path="/signup" component={UserSignUp} />
+            <Route path="/signup" component={UserSignUpWithContext} />
             <Route path="/signout" component={UserSignOut} />
           </Switch>
         </div>

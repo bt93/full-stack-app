@@ -1,3 +1,3 @@
-const baseApiUrl = 'http://localhost:5000/api';
-
-export default baseApiUrl;
+export default {
+    apiBaseUrl: 'http://localhost:5000/api',
+  };

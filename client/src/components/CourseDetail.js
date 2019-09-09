@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import baseApiUrl from '../config';
+import config from '../config';
 import loading from '../img/loading.gif';
 
 class CourseDetail extends Component {
@@ -11,7 +11,7 @@ class CourseDetail extends Component {
     }
 
     componentDidMount() {
-        fetch(`${baseApiUrl}/courses/${this.state.id}`)
+        fetch(`${config.apiBaseUrl}/courses/${this.state.id}`)
             .then(res => res.json())
             .then(res => this.setState(prevState => {
                 return {
