@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import baseApiUrl from '../config';
+import config from '../config';
 import loading from '../img/loading.gif';
 
 class UpdateCourse extends Component {
@@ -18,7 +18,7 @@ class UpdateCourse extends Component {
     }
 
     componentDidMount() {
-        fetch(`${baseApiUrl}/courses/${this.props.match.params.id}`)
+        fetch(`${config.apiBaseUrl}/courses/${this.props.match.params.id}`)
             .then(res => res.json())
             .then(res => this.setState(prevState => {
                 if (!res.course.estimatedTime || !res.course.materialsNeeded) {
