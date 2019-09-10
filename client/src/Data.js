@@ -64,21 +64,21 @@ export default class Data {
         }
     }
 
-    // async editCourse(emailAddress, password, course) {
-    //     const response = await this.api('/courses', 'POST', course, true, { emailAddress, password });
+    async updateCourse(emailAddress, password, course, id) {
+        const response = await this.api(`/courses/${id}`, 'PUT', course, true, { emailAddress, password });
 
-    //     if (response.status === 201) {
-    //         return [];
-    //     } else if (response.status === 400) {
-    //         return response.json().then(data => {
-    //             return data.errors;
-    //         });
-    //     } else if (response.status === 401) {
-    //         return null;
-    //     } else {
-    //         throw new Error();
-    //     }
-    // }
+        if (response.status === 204) {
+            return [];
+        } else if (response.status === 400) {
+            return response.json().then(data => {
+                return data.errors;
+            });
+        } else if (response.status === 401) {
+            return null;
+        } else {
+            throw new Error();
+        }
+    }
 
     // TODO make delete course
 }

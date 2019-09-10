@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import config from '../config';
+import Form from './Form';
 import loading from '../img/loading.gif';
 
 class UpdateCourse extends Component {
@@ -11,10 +12,10 @@ class UpdateCourse extends Component {
             estimatedTime: '',
             materialsNeeded: '',
             isLoading: true,
-            errors: []
+            errors: null
         }
-        this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.change = this.change.bind(this);
+        this.submit = this.submit.bind(this);
     }
 
     componentDidMount() {
@@ -41,7 +42,7 @@ class UpdateCourse extends Component {
             }));
     }
 
-    handleInputChange(event) {
+    change(event) {
         const target = event.target;
         const value = target.value;
         const name = target.name;
@@ -51,92 +52,132 @@ class UpdateCourse extends Component {
         });
     }
     
-    handleSubmit(event) {
-        event.preventDefault();
+    submit(event) {
+        const { context } = this.props;
+        const authUser = JSON.parse(context.authenticatedUser);
+        const emailAddress = authUser.user.user.emailAddress;
+        const password = authUser.password;
+        const courseId = this.props.match.params.id;
         
-        const body = {
-            title: this.state.title,
-            description: this.state.description,
-            estimatedTime: this.state.estimatedTime,
-            materialsNeeded: this.state.materialsNeeded
+        const {
+            title,
+            description,
+            estimatedTime,
+            materialsNeeded
+        } = this.state;
+
+        const updatedCourse = {
+            title,
+            description,
+            estimatedTime,
+            materialsNeeded
         }
 
-        // TODO set up PUT req
-        console.log(body);
+        context.data.updateCourse(emailAddress, password, updatedCourse, courseId)
+            .then(errors => {
+                if (errors.errors) {
+                    console.error(errors.errors);
+                    this.setState({
+                        errors: errors.errors
+                    });
+                } else {
+                    this.props.history.push(`/courses/${courseId}`);
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                this.props.history.push('/error');
+            });
+    }
+
+    cancel = () => {
+        this.props.history.push('/');
     }
 
     render() {
         let renderedData;
+        const {
+            title,
+            description,
+            estimatedTime,
+            materialsNeeded,
+            errors
+        } = this.state;
+        const { context } = this.props;
+        const authUser = JSON.parse(context.authenticatedUser);
 
         if (!this.state.isLoading) {
             renderedData = (
                 <div className="bounds course--detail">
                     <h1>Update Course</h1>
                     <div>
-                        <form onSubmit={this.handleSubmit}>
-                            <div className="grid-66">
-                                <div className="course--header">
-                                    <h4 className="course--label">Course</h4>
-                                    <div>
-                                        <input 
-                                            id="title" 
-                                            name="title" 
-                                            type="text" 
-                                            className="input-title course--title--input" 
-                                            onChange={this.handleInputChange}
-                                            value={this.state.title}
-                                                />
-                                        </div>
-                                    <p>By Joe Smith</p>
-                                </div>
-                                <div className="course--description">
-                                    <div>
-                                        <textarea 
-                                            id="description"
-                                            name="description"
-                                            className="" 
-                                            onChange={this.handleInputChange}
-                                            value={this.state.description}
-                                                />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="grid-25 grid-right">
-                                <div className="course--stats">
-                                    <ul className="course--stats--list">
-                                        <li className="course--stats--list--item">
-                                            <h4>Estimated Time</h4>
+                        <Form
+                            cancel={this.cancel}
+                            errors={errors}
+                            submit={this.submit}
+                            submitButtonText="Update Course" 
+                            elements={() => (
+                                <React.Fragment>
+                                    <div className="grid-66">
+                                        <div className="course--header">
+                                            <h4 className="course--label">Course</h4>
                                             <div>
                                                 <input 
-                                                    id="estimatedTime" 
-                                                    name="estimatedTime" 
+                                                    id="title" 
+                                                    name="title" 
                                                     type="text" 
-                                                    className="course--time--input"
-                                                    onChange={this.handleInputChange}
-                                                    value={this.state.estimatedTime}  
+                                                    className="input-title course--title--input" 
+                                                    onChange={this.change}
+                                                    value={title}
                                                         />
-                                            </div>
-                                        </li>
-                                        <li className="course--stats--list--item">
-                                            <h4>Materials Needed</h4>
+                                                </div>
+                                            <p>By: {authUser.user.user.firstName} {authUser.user.user.lastName}</p>
+                                        </div>
+                                        <div className="course--description">
                                             <div>
                                                 <textarea 
-                                                    id="materialsNeeded" 
-                                                    name="materialsNeeded" 
-                                                    className=""
-                                                    onChange={this.handleInputChange} 
-                                                    value={this.state.materialsNeeded}
+                                                    id="description"
+                                                    name="description"
+                                                    className="" 
+                                                    onChange={this.change}
+                                                    value={description}
                                                         />
                                             </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div className="grid-100 pad-bottom">
-                                <button className="button" type="submit">Update Course</button>
-                                <button className="button button-secondary">Cancel</button>
-                            </div>
-                        </form>
+                                        </div>
+                                    </div>
+                                    <div className="grid-25 grid-right">
+                                        <div className="course--stats">
+                                            <ul className="course--stats--list">
+                                                <li className="course--stats--list--item">
+                                                    <h4>Estimated Time</h4>
+                                                    <div>
+                                                        <input 
+                                                            id="estimatedTime" 
+                                                            name="estimatedTime" 
+                                                            type="text" 
+                                                            className="course--time--input"
+                                                            onChange={this.change}
+                                                            value={estimatedTime}  
+                                                                />
+                                                    </div>
+                                                </li>
+                                                <li className="course--stats--list--item">
+                                                    <h4>Materials Needed</h4>
+                                                    <div>
+                                                        <textarea 
+                                                            id="materialsNeeded" 
+                                                            name="materialsNeeded" 
+                                                            className=""
+                                                            onChange={this.change} 
+                                                            value={materialsNeeded}
+                                                                />
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </React.Fragment>
+                            )}/>
                     </div>
                 </div>
             )
