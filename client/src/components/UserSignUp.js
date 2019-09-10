@@ -47,7 +47,20 @@ export default class UserSignUp extends Component {
         }
         
         if (user.password === user.confirmPassword) {
-           console.log(context)
+            context.data.createUser(user)
+                .then(errors => {
+                    if (errors.errors.length) {
+                        this.setState({ errors });
+                    } else {
+                        context.actions.signIn(emailAddress, password)
+                            .then(() => {
+                                this.props.history.push('/authenticated');
+                            });
+                    }
+                })
+                .catch(err => {
+                    this.props.history.push('/error');
+                });
         } else {
             alert('"Confirm Password" must match "Password"');
         }
@@ -73,7 +86,7 @@ export default class UserSignUp extends Component {
                     <h1>Sign Up</h1>
                     <Form
                         cancel={this.cancel}
-                        errors={errors}
+                        errors={errors.errors}
                         submit={this.submit}
                         submitButtonText="Sign Up"
                         elements={() => (
