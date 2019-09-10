@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Form class used to easily add multiple forms
 export default (props) => {
     const {
         cancel,

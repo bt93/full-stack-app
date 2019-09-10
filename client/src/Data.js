@@ -2,7 +2,9 @@ import React from 'react';
 import config from './config';
 import { Redirect } from 'react-router-dom';
 
+// Used to POST, PUT, or DELETE any data
 export default class Data {
+    // Helper function using Fetch
     api(path, method = 'GET', body = null, requiresAuth = false, credentials = null) {
         const url = config.apiBaseUrl + path;
 

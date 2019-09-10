@@ -4,6 +4,7 @@ import Cookies from 'js-cookie';
 
 const Context = React.createContext(); 
 
+// Creates provider for context
 export class Provider extends Component {
     constructor() {
         super();
@@ -13,6 +14,7 @@ export class Provider extends Component {
         }
     }
 
+    // Signs in user
     signIn = async (emailAddress, password) => {
         const user = await this.data.getUser(emailAddress, password);
 
@@ -27,6 +29,7 @@ export class Provider extends Component {
         return user;
     }
 
+    // Signs out user
     signOut = () => {
         this.setState({ authenticatedUser: null });
 
@@ -55,6 +58,7 @@ export class Provider extends Component {
     
 }
 
+// Creates consumer
 export const Consumer = Context.Consumer;
 
 export default function withContext(Component) {

@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { Consumer } from './Context';
 
+// Creates components for protected route
 export default ({ component: Component, ...rest }) => {
     return (
         <Consumer>
