@@ -31,8 +31,20 @@ class CourseDetail extends Component {
 
     render() {
         let renderedData;
+        let buttons;
+        const { context } = this.props;
+        const authUser = JSON.parse(context.authenticatedUser)
 
         if (!this.state.isLoading) {
+            if (context.authenticatedUser && authUser.user.user.id === this.state.data.user.id) {
+                buttons = (
+                    <span>
+                        <Link className="button" to={`/courses/${this.state.id}/update`}>Update Course</Link>
+                        <button className="button" onClick={() => this.deleteCourse(this.state.id)}>Delete Course</button>
+                    </span>
+                )
+            }
+
             renderedData = (
                 <div className="bounds course--detail">
                     <div className="grid-66">
@@ -85,10 +97,7 @@ class CourseDetail extends Component {
                 <div className="actions--bar">
                     <div className="bounds">
                             <div className="grid-100">
-                            <span>
-                                <Link className="button" to={`/courses/${this.state.id}/update`}>Update Course</Link>
-                                <button className="button" onClick={() => this.deleteCourse(this.state.id)}>Delete Course</button>
-                            </span>
+                            {buttons}
                             <Link className="button button-secondary" to="/">Return to List</Link>
                         </div>
                     </div>
