@@ -17,6 +17,8 @@ import UserSignOut from './components/UserSignOut';
 import CreateCourse from './components/CreateCourse';
 import UpdateCourse from './components/UpdateCourse';
 import NotFound from './components/NotFound';
+import Error from './components/Error';
+import Forbidden from './components/Forbidden';
 import PrivateRoute from './PrivateRoute';
 
 // Context import
@@ -44,6 +46,8 @@ export default () => (
           <Route path="/signin" component={UserSignInWithContext} />
           <Route path="/signup" component={UserSignUpWithContext} />
           <Route path="/signout" component={UserSignOutWithContext} />
+          <Route path="/forbidden" component={Forbidden} />
+          <Route path="/error" component={Error} />
           <Route component={NotFound} />
         </Switch>
       </Router>
