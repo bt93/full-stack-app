@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import config from '../config';
 import Form from './Form';
+import { Redirect } from 'react-router-dom';
 import loading from '../img/loading.gif';
 
 class UpdateCourse extends Component {
@@ -27,6 +28,7 @@ class UpdateCourse extends Component {
                         description: res.course.description,
                         estimatedTime: res.course.estimatedTime,
                         materialsNeeded: res.course.materialsNeeded,
+                        id: res.course.user.id,
                         isLoading: false
                     }
             }));
@@ -171,15 +173,25 @@ class UpdateCourse extends Component {
                     </div>
                 </div>
             )
+
+            if (authUser && authUser.user.user.id === this.state.id) {
+                return (
+                    <div>
+                        {renderedData}
+                    </div>
+                )
+            } else {
+                return <Redirect to='/forbidden' />
+            }
         } else {
             renderedData = <img src={loading} className="centered" alt="Loading" />
+
+            return (
+                <div>
+                    {renderedData}
+                </div>
+            )
         }
-        
-        return (
-            <div>
-                {renderedData}
-            </div>
-        )
     }
 }
 

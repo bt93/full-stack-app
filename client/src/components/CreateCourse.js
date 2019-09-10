@@ -77,6 +77,9 @@ class CreateCourse extends Component {
         const { context } = this.props;
         const authUser = JSON.parse(context.authenticatedUser);
 
+        if (context.authenticatedUser && authUser.user.user.id === this.state.data.user.id) {
+            
+        }
         return (
         <div className="bounds course--detail">
             <h1>Create Course</h1>
