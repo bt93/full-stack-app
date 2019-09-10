@@ -37,7 +37,7 @@ class Courses extends Component {
         } else {
             renderedData = <img src={loading} className="centered" alt="Loading" />
         }
-
+        
         return (
             <div className="bounds">
                 {renderedData}
