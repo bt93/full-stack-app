@@ -49,7 +49,8 @@ export default class UserSignUp extends Component {
         if (user.password === user.confirmPassword) {
             context.data.createUser(user)
                 .then(errors => {
-                    if (errors.errors.length) {
+                    if (errors.errors) {
+                        console.error(errors);
                         this.setState({ errors });
                     } else {
                         context.actions.signIn(emailAddress, password)
@@ -59,6 +60,7 @@ export default class UserSignUp extends Component {
                     }
                 })
                 .catch(err => {
+                    console.error(err);
                     this.props.history.push('/error');
                 });
         } else {
