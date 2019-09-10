@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
+import {
+    Link,
+    Redirect
+} from "react-router-dom";
 import config from '../config';
 import loading from '../img/loading.gif';
 
@@ -13,10 +16,14 @@ class Courses extends Component {
         fetch(`${config.apiBaseUrl}/courses`)
             .then(res => res.json())
             .then(res => this.setState(prevState => {
-                return {
-                data: res.courses,
-                isLoading: false
-            }
+                if (res.status === 500) {
+                    return <Redirect to="/error" />
+                } else {
+                    return {
+                        data: res.courses,
+                        isLoading: false
+                    }
+                }
         }));
     }
 
@@ -37,7 +44,7 @@ class Courses extends Component {
         } else {
             renderedData = <img src={loading} className="centered" alt="Loading" />
         }
-        
+
         return (
             <div className="bounds">
                 {renderedData}

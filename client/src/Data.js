@@ -1,4 +1,6 @@
+import React from 'react';
 import config from './config';
+import { Redirect } from 'react-router-dom';
 
 export default class Data {
     api(path, method = 'GET', body = null, requiresAuth = false, credentials = null) {
@@ -30,6 +32,8 @@ export default class Data {
             return response.json().then(data => data);
         } else if (response.status === 401) {
             return null;
+        } else if (response.status === 500) {
+            return <Redirect to="/error" />
         } else {
             throw new Error();
         }
@@ -43,6 +47,8 @@ export default class Data {
             return response.json().then(data => {
                 return data.errors;
             });
+        } else if (response.status === 500) {
+            return <Redirect to="/error" />
         } else {
             throw new Error();
         }
@@ -59,6 +65,8 @@ export default class Data {
             });
         } else if (response.status === 401) {
             return null;
+        } else if (response.status === 500) {
+            return <Redirect to="/error" />
         } else {
             throw new Error();
         }
@@ -75,6 +83,8 @@ export default class Data {
             });
         } else if (response.status === 401) {
             return null;
+        } else if (response.status === 500) {
+            return <Redirect to="/error" />
         } else {
             throw new Error();
         }
@@ -85,6 +95,8 @@ export default class Data {
 
         if (response.status === 204) {
             return [];
+        } else if (response.status === 500) {
+            return <Redirect to="/error" />
         } else {
             throw new Error();
         }
