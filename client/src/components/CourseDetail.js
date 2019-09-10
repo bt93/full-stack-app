@@ -14,9 +14,14 @@ class CourseDetail extends Component {
         fetch(`${config.apiBaseUrl}/courses/${this.state.id}`)
             .then(res => res.json())
             .then(res => this.setState(prevState => {
-                return {
-                    data: res.course,
-                    isLoading: false
+                if (res.course) {
+                    return {
+                        data: res.course,
+                        isLoading: false
+                    }
+                } else {
+                    console.error(res.errors.errors.message);
+                    return this.props.history.push('/notfound');
                 }
             }))
             .catch(err => {

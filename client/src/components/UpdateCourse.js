@@ -23,6 +23,7 @@ class UpdateCourse extends Component {
         fetch(`${config.apiBaseUrl}/courses/${this.props.match.params.id}`)
             .then(res => res.json())
             .then(res => this.setState(prevState => {
+                if (res.course) {
                     return {
                         title: res.course.title,
                         description: res.course.description,
@@ -31,6 +32,10 @@ class UpdateCourse extends Component {
                         id: res.course.user.id,
                         isLoading: false
                     }
+                } else {
+                    console.error(res.errors.errors.message);
+                    return this.props.history.push('/notfound');
+                }
             }));
     }
 
