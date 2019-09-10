@@ -22,10 +22,24 @@ class CourseDetail extends Component {
     }
 
     deleteCourse(id) {
+        const { context } = this.props;
+        const authUser = JSON.parse(context.authenticatedUser);
+        const emailAddress = authUser.user.user.emailAddress;
+        const password = authUser.password;
+
         if (window.confirm('Are you sure you want to delete this course?')) {
-            // TODO ADD DELETE REQUEST W/ AUTH
-            console.log('DELETED!');
-            this.props.history.push('/');
+            context.data.deleteCourse(emailAddress, password, id)
+                .then(errors => {
+                    if (errors.errors) {
+                        console.error(errors.errors);
+                        this.props.history.push('/errors');
+                    } else {
+                        this.props.history.push('/');
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                });
         } 
     }
 

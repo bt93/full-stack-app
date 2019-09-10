@@ -22,15 +22,6 @@ class UpdateCourse extends Component {
         fetch(`${config.apiBaseUrl}/courses/${this.props.match.params.id}`)
             .then(res => res.json())
             .then(res => this.setState(prevState => {
-                if (!res.course.estimatedTime || !res.course.materialsNeeded) {
-                    return {
-                        title: res.course.title,
-                        description: res.course.description,
-                        estimatedTime: '',
-                        materialsNeeded: '',
-                        isLoading: false
-                    }
-                } else {
                     return {
                         title: res.course.title,
                         description: res.course.description,
@@ -38,7 +29,6 @@ class UpdateCourse extends Component {
                         materialsNeeded: res.course.materialsNeeded,
                         isLoading: false
                     }
-                }
             }));
     }
 
