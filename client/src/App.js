@@ -24,6 +24,7 @@ import withContext from './Context';
 const HeaderWithContext = withContext(Header);
 const UserSignInWithContext = withContext(UserSignIn);
 const UserSignUpWithContext = withContext(UserSignUp);
+const UserSignOutWithContext = withContext(UserSignOut);
 
 
 export default () => (
@@ -38,7 +39,7 @@ export default () => (
           <Route path="/courses/:id" component={CourseDetail} />
           <Route path="/signin" component={UserSignInWithContext} />
           <Route path="/signup" component={UserSignUpWithContext} />
-          <Route path="/signout" component={UserSignOut} />
+          <Route path="/signout" component={UserSignOutWithContext} />
         </Switch>
       </Router>
 );

@@ -1,9 +1,11 @@
 // import React from 'react';
 
 const UserSignOut = (props) => {
-    // delete authentication
+    const { context } = props;
+    context.actions.signOut();
+
     props.history.push('/');
-    return null
+    return null;
 }
 
 export default UserSignOut;
