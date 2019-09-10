@@ -93,51 +93,51 @@ export default class UserSignUp extends Component {
                         submitButtonText="Sign Up"
                         elements={() => (
                                 <React.Fragment>
-                                <input 
-                                    id="firstName" 
-                                    name="firstName" 
-                                    type="text" 
-                                    className="" 
-                                    placeholder="First Name" 
-                                    value={firstName}
-                                    onChange={this.change}
-                                    />
-                                <input 
-                                    id="lastName" 
-                                    name="lastName" 
-                                    type="text" 
-                                    className="" 
-                                    placeholder="Last Name" 
-                                    value={lastName}
-                                    onChange={this.change}
-                                    />
-                                <input 
-                                    id="emailAddress" 
-                                    name="emailAddress" 
-                                    type="text" 
-                                    className="" 
-                                    placeholder="Email Address" 
-                                    value={emailAddress} 
-                                    onChange={this.change}
-                                    />
-                                <input 
-                                    id="password" 
-                                    name="password" 
-                                    type="password" 
-                                    className="" 
-                                    placeholder="Password" 
-                                    value={password}
-                                    onChange={this.change}
-                                    />
-                                <input 
-                                    id="confirmPassword" 
-                                    name="confirmPassword" 
-                                    type="password" 
-                                    className="" 
-                                    placeholder="Confirm Password" 
-                                    value={confirmPassword}
-                                    onChange={this.change}
-                                    />
+                                    <input 
+                                        id="firstName" 
+                                        name="firstName" 
+                                        type="text" 
+                                        className="" 
+                                        placeholder="First Name" 
+                                        value={firstName}
+                                        onChange={this.change}
+                                        />
+                                    <input 
+                                        id="lastName" 
+                                        name="lastName" 
+                                        type="text" 
+                                        className="" 
+                                        placeholder="Last Name" 
+                                        value={lastName}
+                                        onChange={this.change}
+                                        />
+                                    <input 
+                                        id="emailAddress" 
+                                        name="emailAddress" 
+                                        type="text" 
+                                        className="" 
+                                        placeholder="Email Address" 
+                                        value={emailAddress} 
+                                        onChange={this.change}
+                                        />
+                                    <input 
+                                        id="password" 
+                                        name="password" 
+                                        type="password" 
+                                        className="" 
+                                        placeholder="Password" 
+                                        value={password}
+                                        onChange={this.change}
+                                        />
+                                    <input 
+                                        id="confirmPassword" 
+                                        name="confirmPassword" 
+                                        type="password" 
+                                        className="" 
+                                        placeholder="Confirm Password" 
+                                        value={confirmPassword}
+                                        onChange={this.change}
+                                        />
                             </React.Fragment>
                         )}
                     />

@@ -41,8 +41,7 @@ class UserSignIn extends Component {
                     this.props.history.push(from);
                     console.log(`Success! ${emailAddress} is signed in!`);
                 }
-            })
-            
+            }) 
             .catch(err => {
                 console.error(err);
                 this.props.history.push('/error');
