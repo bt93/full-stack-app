@@ -18,7 +18,11 @@ class CourseDetail extends Component {
                     data: res.course,
                     isLoading: false
                 }
-            }));
+            }))
+            .catch(err => {
+                console.error(err);
+                this.props.history.push('/error');
+            });;
     }
 
     deleteCourse(id) {
@@ -32,13 +36,14 @@ class CourseDetail extends Component {
                 .then(errors => {
                     if (errors.errors) {
                         console.error(errors.errors);
-                        this.props.history.push('/errors');
+                        this.props.history.push('/error');
                     } else {
                         this.props.history.push('/');
                     }
                 })
                 .catch(err => {
                     console.error(err);
+                    this.props.history.push('/error');
                 });
         } 
     }

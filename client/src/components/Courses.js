@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import {
-    Link,
-    Redirect
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 import config from '../config';
 import loading from '../img/loading.gif';
 
@@ -17,14 +14,18 @@ class Courses extends Component {
             .then(res => res.json())
             .then(res => this.setState(prevState => {
                 if (res.status === 500) {
-                    return <Redirect to="/error" />
+                    this.props.history.push('/error');
                 } else {
                     return {
                         data: res.courses,
                         isLoading: false
                     }
                 }
-        }));
+        }))
+        .catch(err => {
+            console.error(err);
+            this.props.history.push('/error');
+        });
     }
 
     render() {
