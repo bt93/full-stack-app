@@ -1,5 +1,5 @@
 'use strict';
-
+require('dotenv').config();
 // load modules
 const express = require('express');
 const morgan = require('morgan');

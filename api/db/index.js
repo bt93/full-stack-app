@@ -1,8 +1,10 @@
 const Sequelize = require('sequelize');
+const config = require('../config');
 
-const sequelize = new Sequelize({
-    dialect: 'sqlite',
-    storage: 'fsjstd-restapi.db'
+const { database, username, password, dialect } = config.db;
+
+const sequelize = new Sequelize(database, username, password, {
+    dialect
 });
 
 const db = {
