@@ -2,7 +2,14 @@
 
 The Tenth and Final project for the Full-Stack JavaScript Techdegree from Treehouse. This is a full stack application with a back-end using Node.js, Express, SQL and Sequelize, and a front-end of React.js. This application will allow you to create a user accound, login with authentication and create, edit and delete and view courses. You must create an acound to create a course and must be authorized to update and delete any course.
 
+The REST API is deployed through (Heroku)[https://heroku.com] at https://treehouse-full-stack-app.herokuapp.com/.
+The React.js client is deployed on (GitHub Pages)[https://pages.github.com/].
+
+You can view the (live demo here)[https://jasonrhowie.com/full-stack-app/]
+
 ## Getting Started
+
+If you would like to run the project locally clone or download the master branch and follow these instructions
 
 ### Node.js
 
